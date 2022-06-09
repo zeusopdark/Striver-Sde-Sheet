@@ -1,0 +1,33 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static void setZeros(int matrix[][]) {     
+       boolean row[]=new boolean[matrix.length];
+        boolean colo[]=new boolean[matrix[0].length];
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                if(matrix[i][j]==0){
+                    row[i]=true;
+                    colo[j]=true;
+                }
+            }
+        }
+        
+        for(int i=0;i<row.length;i++){
+            int n=0;
+            if(row[i]==true){
+                while(n<matrix[0].length){
+                    matrix[i][n++]=0;
+                }
+            }
+        }
+        for(int j=0;j<colo.length;j++){
+            int m=0;
+            if(colo[j]==true){
+                while(m<matrix.length){
+                    matrix[m++][j]=0;
+                }
+            }
+        }
+    }
+ }

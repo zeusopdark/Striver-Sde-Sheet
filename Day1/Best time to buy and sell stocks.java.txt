@@ -1,0 +1,19 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution{
+    public static int maximumProfit(ArrayList<Integer> prices){
+        int lsf=Integer.MAX_VALUE;
+        int profit_if_sold_today=0;
+        int overall_profit=0;
+        for(int i:prices){
+            if(i<lsf){
+                lsf=i;
+            }
+            profit_if_sold_today=i-lsf;
+            overall_profit=Math.max(profit_if_sold_today,overall_profit);
+        }
+        return overall_profit;
+    }
+}
