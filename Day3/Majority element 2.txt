@@ -1,0 +1,16 @@
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        HashMap<Integer,Integer>map=new HashMap<Integer,Integer>();
+        List<Integer>list=new ArrayList();
+        int contains_duplicate=(nums.length)/3;
+        for(int i:nums){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        for(int i:map.keySet()){
+            if(map.get(i)>contains_duplicate){
+                list.add(i);
+            }
+        }
+        return list;
+    }
+}

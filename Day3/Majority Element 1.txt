@@ -1,0 +1,22 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+
+//Used Boyer-Moore Voting Algorithm
+
+        int current_player=0;
+        int count=1;
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]==nums[current_player]){
+                count++;
+            }else{
+                count--;
+            }
+            if(count==0){
+                current_player=i;
+                count=1;
+            }
+        }
+        return nums[current_player];
+    }
+}
+    

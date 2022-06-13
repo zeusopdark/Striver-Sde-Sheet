@@ -1,0 +1,30 @@
+class Solution {
+    public double myPow(double x, int n) {
+        if(n==0)return 1.0;
+        if(n==1)return x;
+        if(n<0){
+            return getResult(x,n);
+        }
+       return getPositive(x,n);
+    }
+    
+    public double getPositive(double x,int n){
+        if(n==0){
+            return 1;
+        }
+        double getSmaller=getPositive(x,n/2);
+        if(n%2==0)return getSmaller*getSmaller;
+        
+        return x*getSmaller*getSmaller;
+    }
+    
+    public double getResult(double x,int n){
+        if(n==-1)return 1/x;
+        
+        double getSmaller=getResult(x,n/2);
+        
+        if(n%2==0)return getSmaller*getSmaller;
+        
+        return 1/x*getSmaller*getSmaller;
+    }
+}
