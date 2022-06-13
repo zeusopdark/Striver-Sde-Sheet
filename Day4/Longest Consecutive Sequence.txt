@@ -1,0 +1,55 @@
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        if(nums.length==0)return 0;
+
+
+//Solved this problem by both HashMap and HashSet below is the implementation with the help of both the data structures.
+
+//HashMap solution
+
+     HashMap<Integer,Boolean>map=new HashMap<>();
+        for(int i:nums){
+            map.put(i,true);//intially putting each elemnt to have boolean value to true .
+        }
+        for(int i:nums){
+            if(map.containsKey(i-1)){//if it has nabhour just make that false...doing  this is useful because we are now left with the number which is having true or we can starting of the series.
+                map.put(i,false);
+            }
+        }
+        int max_length=1;
+        for(int i:nums){
+            if(map.get(i)==true){//iterating for only the true one which are present in map...
+                int tl=1;
+                int tsp=i;
+                while(map.containsKey(tsp+tl)){//counting begins from here 
+                    tl++;
+                }
+                if(tl>max_length){
+                    max_length=tl;
+                }
+            }
+        }
+        return max_length;
+
+
+//HashSet Solution
+        HashSet<Integer>set=new HashSet();
+        for(int i:nums){
+            set.add(i);
+        }
+         int final_max=0;
+        for(int val:set){
+            if(!set.contains(val-1)){
+                int current_max=1;
+                int value=val;
+                while(set.contains(value+1)){
+                    value+=1;
+                    current_max+=1;
+            }
+           
+            final_max=Math.max(current_max,final_max);
+        }
+       }
+        return final_max;
+    }
+}
