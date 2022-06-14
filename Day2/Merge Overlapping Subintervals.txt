@@ -1,0 +1,31 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        if(intervals.length<=1)return intervals;
+        ArrayList<int[]>list=new ArrayList<>();
+        
+        Arrays.sort(intervals,(a,b)->{
+            return a[0]-b[0];  //first sort the intervals base on their starting points
+        });
+        
+         int[]hold=intervals[0]; //taking the first row that is first interval 
+        for(int i=1;i<intervals.length;i++){
+            int[]current=intervals[i]; //taking the row based on (i)..
+            
+            if(current[0]<=hold[1]){ //now comparing the first interval ending point with  second interval starting point if hold[1] is greater than or equal to current[0] that means intervals should be merged in such a way that the hold[1] will be done based on max of current[1]&&hold[1]..and it will be updating the hold[1] spot.
+                hold[1]=Math.max(current[1],hold[1]);
+            }
+            else {
+                list.add(hold);//else no chnages req just add the hold..and make hold as                                    current .
+                hold = current;
+            }
+            
+        }
+        list.add(hold);
+        int [][]array=new int[list.size()][2];
+        int k=0;
+        for(int[]itr:list){
+            array[k++]=itr;
+        }
+        return array;
+    }
+}

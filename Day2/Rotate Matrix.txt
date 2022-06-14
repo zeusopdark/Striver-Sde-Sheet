@@ -1,0 +1,25 @@
+class Solution {
+    public void rotate(int[][] matrix) {
+        transpose(matrix);//firstly transposing the matrix;
+        for(int i=0;i<matrix.length;i++){//reversing each row .
+            int s=0;
+            int end=matrix.length-1;
+            while(s<end){
+                int temp=matrix[i][s];
+                matrix[i][s]=matrix[i][end];
+                matrix[i][end]=temp;
+                s++;
+                end--;
+            }
+        }
+    }
+    public void transpose(int[][]matrix){//first transpose the matrix the resultant matrix will be havig same similarity as we want the answer only the rows will be in reverse order reverse the row as well and get the answer.
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<i;j++){
+                int temp=matrix[i][j];
+                matrix[i][j]=matrix[j][i];
+                matrix[j][i]=temp;
+            }
+        }
+    }
+}
