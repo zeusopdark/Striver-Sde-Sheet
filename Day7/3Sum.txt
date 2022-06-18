@@ -1,0 +1,29 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {//NOTE: Arrays.asList method is very useful in this question note it .
+        if(nums.length<3)return new ArrayList<>();
+        HashSet<List<Integer>>set=new HashSet<>();//duplicate result will be removed by this.
+        Arrays.sort(nums);//sorting is used for two pointer approach this question is similer to two sum 2 where we used the two pointer approach one starting from last and another from i+1;
+        for(int i=0;i<nums.length-2;i++){//it can only form triplets till nums.length-2;
+            int j=i+1;//two pointer approach is being used here one starting from i+1 and another from last 
+            int k=nums.length-1;
+            while(j<k){//multiple answer will be find from here by fixing the value of i at first only the j and k will be adjusted accordingly.
+            if(nums[i]+nums[j]+nums[k]==0){
+                ArrayList<Integer>list=new ArrayList<>();
+                list.add(nums[i]);
+                list.add(nums[j]);
+                list.add(nums[k]);
+                set.add(list);//only the unique one will be added in the set.
+                j++;
+                k--;
+            }
+            else if((nums[i]+nums[j]+nums[k]>0))k--;//since the array is sorted the idea is if the sum is greater than the zero than we will adjust the k since decrement the value of k will reduce the sum value as well and thats why k--;
+            else j++;//if it is less than zero than increment the value
+        }
+        }
+       List<List<Integer>>result=new ArrayList<>();//creating this list for the answer or we can say combing the set list element together with the help of list built in list;.
+        for(List<Integer>list:set){//traversing through se element set itself here become list so we use list<integer>list:set for traversal 
+            result.add(list);
+        }
+        return result;
+    }
+}
